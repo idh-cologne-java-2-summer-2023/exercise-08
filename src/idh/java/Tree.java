@@ -8,6 +8,7 @@ public class Tree<T>  {
 
 	T value;
 	Set<Tree<T>> children;
+	String space = "";
 	
 	public Tree(T value) {
 		this.value = value;
@@ -31,8 +32,6 @@ public class Tree<T>  {
 		return children;
 	}
 	
-	String space = "";
-	
 	public void dfs(String space) {
 		this.space = space;
 		System.out.println(space + this.value);
@@ -49,11 +48,13 @@ public class Tree<T>  {
 		Tree<String> bike = new Tree<String>("bike");
 		Tree<String> buggy = new Tree<String>("buggy");
 		Tree<String> wheeled_vehicle = new Tree<String>("wheeled vehicle");
+		Tree<String> babyBuggy = new Tree<String>("babyBuggy");
 
 		wheeled_vehicle.children().add(bike);
 		wheeled_vehicle.children().add(buggy);
 		bike.children().add(tandem);
 		bike.children().add(ebike);
+		buggy.children().add(babyBuggy);
 		
 		wheeled_vehicle.dfs(wheeled_vehicle.space);
 	}
