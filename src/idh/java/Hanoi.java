@@ -6,6 +6,7 @@ import java.util.Deque;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+
 public class Hanoi {
 
 	Deque<Integer> left = new LinkedList<Integer>();
@@ -93,6 +94,7 @@ public class Hanoi {
 		Hanoi hanoi = new Hanoi();
 		// hanoi.run();
 		hanoi.runAutomatically();
+		
 	}
 
 	private void runAutomatically() {
@@ -106,10 +108,27 @@ public class Hanoi {
 		System.out.println(this);
 	}
 	
-	private void movePieces(int numberOfPieces, char from, char to, char util) {
-		// TODO: Implement me!
+	private static void movePieces(int numberOfPieces, char from, char to, char util) {
+		if(numberOfPieces == 1) {
+			System.out.println("Verschiebe Platte" + " " + from + " " + "Nach Platte" + " " + to);
+			return;
+		} 
+		movePieces(numberOfPieces-1, from, util, to); //l,m,r
+		System.out.println("Verschiebe Platte" +" " + numberOfPieces + " " + "von" + " " + from + " " + "nach" + " " + "Platte" + " " + to);
+		movePieces(numberOfPieces-1, to, from, util); //r,l,m
+		System.out.println("Verschiebe Platte" + " " + numberOfPieces +  " " +"von" + " " +to +  " " +"nach" + " " + "Platte" + " " + util);
+		movePieces(numberOfPieces-1, util, to, from); //m,r,l
+		System.out.println("Verschiebe Platte" +" " + numberOfPieces + " " + "von" + " " + util + " " + "nach" + " " + "Platte" + " " + from);
+		movePieces(numberOfPieces-1, from, util, to); //l,m,r
+		System.out.println("Verschiebe Platte" +" " + numberOfPieces + " " + "von" + " " + from + " " + "nach" + " " + "Platte" + " " + to);
+		movePieces(numberOfPieces-1, to, from, util); //r,l,m
+
+			
+		}
+	
+		
 	}
 	
 	
 
-}
+

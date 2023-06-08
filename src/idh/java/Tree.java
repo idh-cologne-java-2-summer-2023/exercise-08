@@ -66,7 +66,7 @@ public class Tree<T>  {
 		bike.children().add(ebike);
 		
 	   
-		wheeled_vehicle.dfs(1);
+		wheeled_vehicle.dfs(0);
 		
 		}
 	}
