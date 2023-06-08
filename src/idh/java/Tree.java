@@ -32,12 +32,23 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
-		System.out.println(this.value);
+//Aufgabe 1
+	public void dfs(int number) {		
+//		System.out.println(number);
 		for (Tree<T> child : children) {
-			child.dfs();
+			if(number == 0) {
+				System.out.println(this.value);
+                number++;
+			}
+			if(number == 1) {
+				System.out.println(" " + child.value);
+			}else if(number == 2) {
+				System.out.println("  " + child.value);
 		}
-	}
+			child.dfs(number+1);
+		}
+		
+		}
 	
 	
 	public static void main(String[] args) {
@@ -53,7 +64,7 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
 	}
 
 }
