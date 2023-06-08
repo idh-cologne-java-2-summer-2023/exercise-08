@@ -32,11 +32,14 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
-		System.out.println(this.value);
-		for (Tree<T> child : children) {
-			child.dfs();
-		}
+	public void dfs(int depth) {
+			for(int i = depth; i > 0; i--) {
+				System.out.print("  ");
+			}
+			System.out.println(this.value);
+		    for (Tree<T> child : children) {
+		        child.dfs(depth + 1);
+		    }
 	}
 	
 	
@@ -45,15 +48,23 @@ public class Tree<T>  {
 		Tree<String> ebike = new Tree<String>("e-bike");
 		Tree<String> tandem = new Tree<String>("tandem");
 		Tree<String> bike = new Tree<String>("bike");
-		Tree<String> buggy = new Tree<String>("buggy");
+		Tree<String> unicyle = new Tree<String>("unicyle");
 		Tree<String> wheeled_vehicle = new Tree<String>("wheeled vehicle");
-
+		Tree<String> car = new Tree<String>("car");
+		Tree<String> sedan = new Tree<String>("sedan");
+		Tree<String> convertible = new Tree<String>("convertible");
+		Tree<String> EV = new Tree<String>("EV");
+		
 		wheeled_vehicle.children().add(bike);
-		wheeled_vehicle.children().add(buggy);
+		wheeled_vehicle.children().add(unicyle);
 		bike.children().add(tandem);
 		bike.children().add(ebike);
+		wheeled_vehicle.children().add(car);
+		car.children().add(sedan);
+		car.children().add(convertible);
+		car.children().add(EV);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
 	}
 
 }
