@@ -32,11 +32,11 @@ public class Tree<T>  {
 		return children;
 	}
 	
-	public void dfs(String space) {
-		this.space = space;
+	public void dfs() {
 		System.out.println(space + this.value);
 		for (Tree<T> child: children) {
-			child.dfs(space + " ");
+			child.space = space + " ";
+			child.dfs();
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class Tree<T>  {
 		bike.children().add(ebike);
 		buggy.children().add(babyBuggy);
 		
-		wheeled_vehicle.dfs(wheeled_vehicle.space);
+		wheeled_vehicle.dfs();
 	}
 
 }
