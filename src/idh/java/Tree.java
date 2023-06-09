@@ -32,10 +32,15 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
+	public void dfs(int depth) {
+		int c = depth;
+		while (c != 0) {
+			System.out.print("  ");
+			c--;
+		}
 		System.out.println(this.value);
 		for (Tree<T> child : children) {
-			child.dfs();
+			child.dfs(depth + 1);
 		}
 	}
 	
@@ -53,7 +58,7 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
 	}
 
 }
