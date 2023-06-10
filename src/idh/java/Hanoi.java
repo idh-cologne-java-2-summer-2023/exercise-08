@@ -52,7 +52,7 @@ public class Hanoi {
 		}
 	}
 	
-	private Iterator<Integer> getLeftDescendingIterator() {
+	private Iterator<Integer> getLeftDescendingIterator() { 	
 		return left.descendingIterator();
 
 	}
@@ -103,11 +103,19 @@ public class Hanoi {
 		movePieces(left.size(), 'l', 'r', 'm');
 		
 		// and in the end, we check that everything has been moved
+		System.out.println("---------------------------");
 		System.out.println(this);
 	}
 	
 	private void movePieces(int numberOfPieces, char from, char to, char util) {
 		// TODO: Implement me!
+		if(numberOfPieces == 1) {
+			movePiece(from, to);
+		} else {
+			movePieces(numberOfPieces - 1, from, util, to);
+			movePiece(from, to);
+			movePieces(numberOfPieces - 1, util, to, from);
+		}
 	}
 	
 	
