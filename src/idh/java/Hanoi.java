@@ -106,7 +106,7 @@ public class Hanoi {
 		System.out.println(this);
 	}
 	
-	private void movePieces(int numberOfPieces, char from, char to, char util) {
+	private void movePieces(int numberOfPieces, char from, char to, char util); {
 		// TODO: Implement me!
 	}
 	
