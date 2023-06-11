@@ -32,13 +32,32 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
-		System.out.println(this.value);
-		for (Tree<T> child : children) {
-			child.dfs();
-		}
-	}
+	//Tree Values first converted to Strings, a new lines is added on every Indentation. Space before Child Objects gets replaced with indentation.
 	
+	public String dfs() {
+		StringBuilder sb = new StringBuilder(this.value.toString());
+		for (Tree<T> child : children) {
+			sb.append("\n");
+			sb.append(child.dfs().replaceAll("(?m)^","   "));
+		}
+		return sb.toString();
+	}
+	// Class notes
+//	public class Tree<T> {
+//		T value;
+//		Set<Tree<T>> children; 
+//		
+//		public tree(T value) {
+//			this.value = value;
+//			children = new HashSet<Tree<T>>();
+//		}
+//		
+//		public set<<T>> children() {
+//			return children;
+//		}
+// 	}
+//	
+// Class notes
 	
 	public static void main(String[] args) {
 		
@@ -53,7 +72,9 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		System.out.println(wheeled_vehicle.dfs());
+		
+
 	}
 
 }
