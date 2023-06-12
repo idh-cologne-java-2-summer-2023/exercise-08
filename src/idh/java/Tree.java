@@ -31,12 +31,22 @@ public class Tree<T>  {
 		return children;
 	}
 	
-	
-	public void dfs() {
-		System.out.println(this.value);
-		for (Tree<T> child : children) {
-			child.dfs();
-		}
+	//Aufgabe 1
+	//dfs soll Knoten steuern, damit die Ausgabe strukturiert stattfinden kann 
+	public void dfs(int knotenSteuern) {
+		  StringBuilder knoten = new StringBuilder();
+			for (int i = 0; i < knotenSteuern; i++) {
+		        knoten.append("  "); // Fügt zwei Leerzeichen pro Hierarchieebene hinzu
+		    }
+			//toString soll die Ausgabe ermöglichen 
+		    System.out.println(knoten + this.value.toString());
+		    for (Tree<T> child : children) {
+		        child.dfs(knotenSteuern + 1);
+		    }
+		    
+		    //Leider habe ich es nicht hinbekommen, die Aussagebe so anzuordnen wie vorgegeben
+		    //In meinem Code kommen buggy und bike als erstes 
+		    //Ich habe versucht die Anordnung zu ändern, doch leider war diese ebenfalls fehlerhaft
 	}
 	
 	
@@ -53,7 +63,8 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		//Null wurde eingefügt, da dfs nicht statisch ist 
+		wheeled_vehicle.dfs(0);
 	}
 
 }
