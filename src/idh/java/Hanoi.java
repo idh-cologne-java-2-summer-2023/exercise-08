@@ -18,6 +18,7 @@ public class Hanoi {
 		}
 	}
 	
+	//
 	private void movePiece(char from, char to) {
 		Integer piece = null;
 		switch(from) {
