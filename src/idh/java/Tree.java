@@ -8,6 +8,7 @@ public class Tree<T>  {
 
 	T value;
 	Set<Tree<T>> children;
+	String indent = "";
 	
 	public Tree(T value) {
 		this.value = value;
@@ -33,8 +34,9 @@ public class Tree<T>  {
 	
 	
 	public void dfs() {
-		System.out.println(this.value);
+		System.out.println(indent + this.value);
 		for (Tree<T> child : children) {
+			child.indent = indent + " ";
 			child.dfs();
 		}
 	}
