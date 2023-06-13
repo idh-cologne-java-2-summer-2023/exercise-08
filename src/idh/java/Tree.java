@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.tree.TreeNode;
+
 public class Tree<T>  {
 
 	T value;
@@ -33,12 +35,26 @@ public class Tree<T>  {
 	
 	
 	public void dfs() {
-		System.out.println(this.value);
-		for (Tree<T> child : children) {
-			child.dfs();
-		}
+		 stagadd(this, 0);
 	}
 	
+	 private void stagadd(Tree<T> node, int depth) {
+	        StringBuilder sb = new StringBuilder();
+
+	        for (int i = 0; i < depth; i++) {
+	            sb.append("  ");
+	        }
+
+	        sb.append(node.get());
+	        System.out.println(sb.toString());
+
+	        Set<Tree<T>> children = node.children();
+	        if (children != null) {
+	            for (Tree<T> child : children) {
+	            	stagadd(child, depth + 1);
+	            }
+	        }
+	    }
 	
 	public static void main(String[] args) {
 		
