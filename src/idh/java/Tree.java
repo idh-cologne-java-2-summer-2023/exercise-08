@@ -30,8 +30,7 @@ public class Tree<T>  {
 	public Set<Tree<T>> children() {
 		return children;
 	}
-	
-	
+		
 	public void dfs() {
 		System.out.println(this.value);
 		for (Tree<T> child : children) {
@@ -39,6 +38,31 @@ public class Tree<T>  {
 		}
 	}
 	
+	public void dfsTest() {
+		System.out.println("dfs() start");
+		System.out.println(this.value);
+		System.out.println("value printed");
+		for (Tree<T> child : children) {
+			System.out.println("started loop");
+			child.dfsTest();
+			System.out.println("finished dfs() in loop");
+		}
+		System.out.println("finished loop");
+	}
+	
+	public void dfsTest2() {
+		int i = 0;
+		System.out.println(this.value);
+		for (Tree<T> child : children) {
+			i++;
+			for (int j = 0; j < i; j++) {
+				System.out.print("  ");
+			}
+			child.dfsTest2();
+		}
+	}
+	
+
 	
 	public static void main(String[] args) {
 		
@@ -53,7 +77,10 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs();		
+		wheeled_vehicle.dfsTest();
+//		wheeled_vehicle.dfsTest2();
+		
 	}
 
 }
