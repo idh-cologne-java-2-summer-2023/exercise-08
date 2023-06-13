@@ -35,21 +35,23 @@ public class Tree<T>  {
 	public void dfs() {
 		System.out.println(this.value);
 		for (Tree<T> child : children) {
+			System.out.print("\t");
 			child.dfs();
 		}
+		
 	}
 	
 	
 	public static void main(String[] args) {
 		
-		Tree<String> ebike = new Tree<String>("e-bike");
-		Tree<String> tandem = new Tree<String>("tandem");
-		Tree<String> bike = new Tree<String>("bike");
+		Tree<String> ebike = new Tree<String>("\t e-bike");
+		Tree<String> tandem = new Tree<String>("\t tandem");
 		Tree<String> buggy = new Tree<String>("buggy");
+		Tree<String> bike = new Tree<String>("bike");
 		Tree<String> wheeled_vehicle = new Tree<String>("wheeled vehicle");
 
-		wheeled_vehicle.children().add(bike);
 		wheeled_vehicle.children().add(buggy);
+		wheeled_vehicle.children().add(bike);
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
