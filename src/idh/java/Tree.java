@@ -31,11 +31,18 @@ public class Tree<T>  {
 		return children;
 	}
 	
+	// Aufgabe 1
+	//Knoten steuern
+	//Leerzeichen pro Hierarchiebene durch "  " gekennzeichnet
 	
-	public void dfs() {
-		System.out.println(this.value);
+	public void dfs(int structure) {
+		StringBuilder knoten = new StringBuilder();
+		for (int i=0; i < structure; i++) {
+			knoten.append("  ");
+		}
+		System.out.println(knoten + this.value.toString());
 		for (Tree<T> child : children) {
-			child.dfs();
+			child.dfs(structure +1);
 		}
 	}
 	
@@ -53,7 +60,8 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		//Ausgangspunkt
+		wheeled_vehicle.dfs(0);
 	}
 
 }
