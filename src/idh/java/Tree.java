@@ -32,13 +32,35 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
-		System.out.println(this.value);
-		for (Tree<T> child : children) {
-			child.dfs();
-		}
-	}
+//	public void dfs(int abstand) {
+//		for (int i = 0; i < abstand; i++) {
+//			System.out.println("\t");
+//		}
+//		
+//		System.out.println(this.value);
+//		for (Tree<T> child : children) {
+//			child.dfs(abstand++);
+//		}
+//	}
 	
+	public void dfs(int abstand) {
+        for (int i = 0; i < abstand; i++) {
+            System.out.print(" ");//Leerzeichen
+        }
+
+        System.out.println(this.value);
+
+        for (Tree<T> child : children) {
+            child.dfs(abstand + 1);
+        }
+    }
+	
+	
+	//Jedes Element eines Baumes ist wieder ein Baum. Daher ist es eine Rekursive Datenstruktur
+	//B und C sind ein Set, dass in A gespeichert ist
+//	public void childmove() {
+//		
+//	}
 	
 	public static void main(String[] args) {
 		
@@ -53,7 +75,16 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		//for-each Children ein Leerzeichen einfügen?
+		
+		/*
+		 * ChatGPT schlägt vor, rekursiv zu arbeiten --> Das ergibt sinn
+		 */
+		
+		
+	
+		
+		wheeled_vehicle.dfs(0);
 	}
 
 }

@@ -13,7 +13,7 @@ public class Hanoi {
 	Deque<Integer> right = new LinkedList<Integer>();
 	
 	public Hanoi() {
-		for (int i = 3; i < 10; i++) {
+		for (int i = 3; i < 6; i++) { //statt 10 wird eine 6 geschrieben, damit es 3 scheiben sind Ist zur Übung einfacher
 			left.addLast(i);
 		}
 	}
@@ -91,7 +91,7 @@ public class Hanoi {
 	
 	public static void main(String[] args) {
 		Hanoi hanoi = new Hanoi();
-		// hanoi.run();
+		//hanoi.run();
 		hanoi.runAutomatically();
 	}
 
@@ -101,13 +101,76 @@ public class Hanoi {
 
 		// this is the entry point into the recursion
 		movePieces(left.size(), 'l', 'r', 'm');
+		//movePieces(3, 'l', 'r', 'm'); //number of peaces wird auf 3 gesetg
 		
 		// and in the end, we check that everything has been moved
 		System.out.println(this);
 	}
 	
 	private void movePieces(int numberOfPieces, char from, char to, char util) {
-		// TODO: Implement me!
+		System.out.println(this);
+		System.out.println("\n");
+		if(numberOfPieces == 0) {
+			//movePiece(from,to);
+			return;
+		}
+		
+//		System.out.println(numberOfPieces);
+//		System.out.println(from);
+//		System.out.println(to);
+//		System.out.println(util);
+		
+//		alle außer der untersten auf util schieben
+		movePieces(numberOfPieces-1, from, util, to);
+		movePiece(from,to);
+		System.out.println("x");
+		movePieces(numberOfPieces-1, util, to, from);
+		
+		
+
+	
+		
+			
+
+		
+		/* Gedanken zur Reihenfolge, der Verschiebungen 
+		
+		 * erster schritt von links nach rechts schieben
+		 * From = l
+		 * to = r
+		 * util = m
+		 * 
+		 * zweiter Schritt
+		 * from = l
+		 * to = m
+		 * util= r
+		 * 
+		 * dritter Schritt
+		 * from = r
+		 * to = m
+		 * util = l
+		 * 
+		 * vierter
+		 * from =l
+		 * to =r
+		 * util =m
+		 * 
+		 * fünf
+		 * from=m
+		 * to=l
+		 * util=r
+		 * 
+		 * 6
+		 * from =m
+		 * to R
+		 * util = l
+		 * 
+		 * 7
+		 * from l
+		 * to r
+		 * util m
+		 * 
+		 */
 	}
 	
 	
