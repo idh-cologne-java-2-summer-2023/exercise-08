@@ -9,6 +9,7 @@ public class Tree<T>  {
 	T value;
 	Set<Tree<T>> children;
 	
+	// constructors
 	public Tree(T value) {
 		this.value = value;
 		this.children = new HashSet<Tree<T>>();
@@ -18,7 +19,8 @@ public class Tree<T>  {
 		this.value = value;
 		this.children = new HashSet<Tree<T>>(children);
 	}
-		
+	
+	// getter and setter
 	public T get() {
 		return value;
 	}
@@ -27,15 +29,28 @@ public class Tree<T>  {
 		this.value = value;
 	}
 
-	public Set<Tree<T>> children() {
+	public Set<Tree<T>> getChildren() {
 		return children;
 	}
 	
+	public void addToChildren(Tree<T> child) {
+		children.add(child);
+	}
 	
-	public void dfs() {
+	
+	private void indentation(int amount) {
+		for (int i = 0; i < amount; i++) {
+			System.out.print(" ");
+		}
+	}
+	
+	public void dfs(int level) {
+		indentation(level * 2);
 		System.out.println(this.value);
 		for (Tree<T> child : children) {
-			child.dfs();
+			level++;
+			child.dfs(level);
+			level--;
 		}
 	}
 	
@@ -48,12 +63,14 @@ public class Tree<T>  {
 		Tree<String> buggy = new Tree<String>("buggy");
 		Tree<String> wheeled_vehicle = new Tree<String>("wheeled vehicle");
 
-		wheeled_vehicle.children().add(bike);
-		wheeled_vehicle.children().add(buggy);
-		bike.children().add(tandem);
-		bike.children().add(ebike);
+		wheeled_vehicle.addToChildren(bike);
+		wheeled_vehicle.addToChildren(buggy);
+		bike.addToChildren(tandem);
+		bike.addToChildren(ebike);
 		
-		wheeled_vehicle.dfs();
+		int  level = 0;
+		
+		wheeled_vehicle.dfs(level);
 	}
 
 }
