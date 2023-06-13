@@ -37,7 +37,8 @@ public class Tree<T>  {
 			child.dfs();
 		}
 	}
-	
+
+// identisch mit vorgegebener Funktion, nur Testzeilen hinzugefügt	
 	public void dfsTest() {
 		System.out.println("dfs() start");
 		System.out.println(this.value);
@@ -49,8 +50,10 @@ public class Tree<T>  {
 		}
 		System.out.println("finished loop");
 	}
-	
-	public void dfsTest2() {
+
+// nicht geschafft, die Funktion so umzuschreiben, dass wie vorher kein Argument übergegenben wird
+// verschiedene Ansätze, die ich versucht hatte, unten (keiner davon richtig)
+	public void dfsVersion1() {
 		int i = 0;
 		System.out.println(this.value);
 		for (Tree<T> child : children) {
@@ -58,10 +61,18 @@ public class Tree<T>  {
 			for (int j = 0; j < i; j++) {
 				System.out.print("  ");
 			}
-			child.dfsTest2();
+			child.dfsVersion1();
 		}
 	}
 	
+	public void dfsVersion2() {
+		System.out.println(this.value);
+		for (Tree<T> child : children) {
+			System.out.print("  ");
+			child.dfsVersion2();
+			System.out.print("  ");
+		}
+	}
 
 	
 	public static void main(String[] args) {
@@ -79,7 +90,8 @@ public class Tree<T>  {
 		
 		wheeled_vehicle.dfs();		
 		wheeled_vehicle.dfsTest();
-//		wheeled_vehicle.dfsTest2();
+		wheeled_vehicle.dfsVersion1();
+		wheeled_vehicle.dfsVersion2();
 		
 	}
 
