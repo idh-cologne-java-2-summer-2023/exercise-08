@@ -1,22 +1,23 @@
 package idh.java;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Tree<T>  {
 
 	T value;
 	Set<Tree<T>> children;
+	List<Tree<T>> parents; //Referenz auf Elternknoten (wir wollen wissen wie viele hat das child)
 	
 	public Tree(T value) {
 		this.value = value;
 		this.children = new HashSet<Tree<T>>();
+		this.parents = new ArrayList<Tree<T>>();
 	}
 	
 	public Tree(T value, Collection<Tree<T>> children) {
 		this.value = value;
 		this.children = new HashSet<Tree<T>>(children);
+		this.parents = new ArrayList<Tree<T>>();
 	}
 		
 	public T get() {
@@ -30,12 +31,22 @@ public class Tree<T>  {
 	public Set<Tree<T>> children() {
 		return children;
 	}
-	
-	
-	public void dfs() {
-		System.out.println(this.value);
+
+	public void addChild(Tree<T> child) {
+		child.parents.add(this);
+		children.add(child);
+	}
+	/*public int countParents() {
+		return parents.size();
+	}*/
+
+	public void dfs(int i) {
+
+		String spaces = " ".repeat(i);
+		System.out.println(spaces + this.value);
 		for (Tree<T> child : children) {
-			child.dfs();
+			//i = child.countParents();
+			child.dfs(i + 1);
 		}
 	}
 	
@@ -48,12 +59,17 @@ public class Tree<T>  {
 		Tree<String> buggy = new Tree<String>("buggy");
 		Tree<String> wheeled_vehicle = new Tree<String>("wheeled vehicle");
 
-		wheeled_vehicle.children().add(bike);
+		/*wheeled_vehicle.children().add(bike);
 		wheeled_vehicle.children().add(buggy);
 		bike.children().add(tandem);
-		bike.children().add(ebike);
+		bike.children().add(ebike);*/
+
+		wheeled_vehicle.addChild(bike);
+		wheeled_vehicle.addChild(buggy);
+		bike.addChild(tandem);
+		bike.addChild(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
 	}
 
 }
