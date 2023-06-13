@@ -31,12 +31,15 @@ public class Tree<T>  {
 		return children;
 	}
 	
-	
-	public void dfs() {
-		System.out.println(this.value);
-		for (Tree<T> child : children) {
-			child.dfs();
-		}
+	public void dfs(int ebene) {
+		String abstand = "";
+			for (int i = 0; i < ebene; i++) {
+					abstand = abstand + "   ";
+			}
+		System.out.println(abstand + this.value);
+			for (Tree<T> child : children) {
+				child.dfs(ebene + 1);
+			}
 	}
 	
 	
@@ -53,7 +56,8 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
+		
 	}
 
 }
