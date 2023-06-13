@@ -32,16 +32,19 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
-		System.out.println(this.value);
+	public void dfs(int level) {
+		String indentation = "";
+		for (int i = 0; i < level; i++) {
+			indentation += "  ";
+		}
+		System.out.println(indentation + this.value);
 		for (Tree<T> child : children) {
-			child.dfs();
+			child.dfs(level + 1);
 		}
 	}
 	
 	
 	public static void main(String[] args) {
-		
 		Tree<String> ebike = new Tree<String>("e-bike");
 		Tree<String> tandem = new Tree<String>("tandem");
 		Tree<String> bike = new Tree<String>("bike");
@@ -52,8 +55,8 @@ public class Tree<T>  {
 		wheeled_vehicle.children().add(buggy);
 		bike.children().add(tandem);
 		bike.children().add(ebike);
-		
-		wheeled_vehicle.dfs();
+
+		wheeled_vehicle.dfs(0);
 	}
 
 }

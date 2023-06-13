@@ -18,20 +18,25 @@ public class Hanoi {
 		}
 	}
 	
-	private void movePiece(char from, char to) {
-		Integer piece = null;
-		switch(from) {
-		case 'l': piece = left.remove(); break;
-		case 'm': piece = middle.remove(); break;
-		case 'r': piece = right.remove(); break;
-		}
-		
-		switch(to) {
-		case 'l': left.addFirst(piece); break;
-		case 'm': middle.addFirst(piece); break;
-		case 'r': right.addFirst(piece); break;
+	private void movePieces(int numberOfPieces, char from, char to, char util) {
+		if (numberOfPieces == 1) {
+			// Basisfall: Verschieben einer Scheibe von 'from' nach 'to'
+			movePiece(from, to);
+			System.out.println(this);
+		} else {
+			// Rekursionsschritt:
+			// a) Verschieben der oberen n-1 Scheiben von 'from' nach 'util'
+			movePieces(numberOfPieces - 1, from, util, to);
+			
+			// b) Verschieben der verbleibenden einen Scheibe von 'from' nach 'to'
+			movePiece(from, to);
+			System.out.println(this);
+			
+			// c) Verschieben der oberen n-1 Scheiben von 'util' nach 'to'
+			movePieces(numberOfPieces - 1, util, to, from);
 		}
 	}
+
 	
 	public void run() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -91,9 +96,9 @@ public class Hanoi {
 	
 	public static void main(String[] args) {
 		Hanoi hanoi = new Hanoi();
-		// hanoi.run();
 		hanoi.runAutomatically();
 	}
+
 
 	private void runAutomatically() {
 		// we print out the initial situation
