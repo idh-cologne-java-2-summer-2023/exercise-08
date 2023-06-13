@@ -30,14 +30,18 @@ public class Tree<T>  {
 	public Set<Tree<T>> children() {
 		return children;
 	}
-	
-	
-	public void dfs() {
-		System.out.println(this.value);
+
+	static int count = 0;
+	public void dfs(String countOfSpace) {
+
+		System.out.println(countOfSpace + this.value);
+
 		for (Tree<T> child : children) {
-			child.dfs();
+			child.dfs(countOfSpace + "  ");
 		}
 	}
+
+
 	
 	
 	public static void main(String[] args) {
@@ -53,7 +57,7 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs("");
 	}
 
 }
