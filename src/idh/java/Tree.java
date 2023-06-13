@@ -31,18 +31,16 @@ public class Tree<T> {
         return children;
     }
 
-    public  StringBuilder dfs(int level) {
-        StringBuilder indent = new StringBuilder();
-        for (int i = 0; i < level; i++) {
-            indent.append(" "); // getting the indentation
-        }
-        for (Tree<T> child : children) {
-            child.dfs(level + 1);
-
+    public  String dfs(int level) {
+        StringBuilder indent = new StringBuilder(this.value.toString());
+        for (Tree<T>child : children) {
+            indent.append("/n"); // getting the indentation
+            indent.append(child.dfs(level).replaceAll("(?m)^","   "));
         }
         
         
-        return indent;
+        
+        return indent.toString();
     }
 
     public static void main(String[] args) {
@@ -61,7 +59,7 @@ public class Tree<T> {
         
 
         wheeled_vehicle.dfs(2);
-       // System.out.println(indent.toString() + wheeled_vehicle.value);//why can´t I use indent?
+       System.out.println(wheeled_vehicle.dfs(2));
     
     }
 
