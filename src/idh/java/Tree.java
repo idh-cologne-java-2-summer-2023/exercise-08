@@ -31,7 +31,7 @@ public class Tree<T>  {
 		return children;
 	}
 
-	static int count = 0;
+
 	public void dfs(String countOfSpace) {
 
 		System.out.println(countOfSpace + this.value);
