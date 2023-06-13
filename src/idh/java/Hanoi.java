@@ -13,7 +13,7 @@ public class Hanoi {
 	Deque<Integer> right = new LinkedList<Integer>();
 	
 	public Hanoi() {
-		for (int i = 3; i < 10; i++) {
+		for (int i = 1; i < 4; i++) {
 			left.addLast(i);
 		}
 	}
@@ -108,8 +108,37 @@ public class Hanoi {
 	
 	private void movePieces(int numberOfPieces, char from, char to, char util) {
 		// TODO: Implement me!
+		
+		
+		while (numberOfPieces > 0) {
+			if(numberOfPieces % 2 == 1) {
+				movePiece(from, to);
+				System.out.println(this);
+				if(getLength(util) > 0) {
+					movePieces(getLength(util), util, to, from);
+				}
+				else movePieces(getLength(fr), fr, t, ut);
+			}
+			else if(numberOfPieces % 2 == 0) {	
+				movePiece(from, util);
+				System.out.println(this);
+				if(getLength(to) > 0) {
+					movePieces(getLength(to), to, util, from);
+				}
+				else movePieces(getLength(fr), fr, t, ut);
+			}
+		}
+		
 	}
 	
+	private int getLength(char stack){
+		switch(stack) {
+		case 'l': return left.size();
+		case 'm': return middle.size();
+		case 'r': return right.size(); 
+		default: return 0;
+		}
+	}
 	
 
 }
