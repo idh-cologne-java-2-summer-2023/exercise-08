@@ -31,15 +31,18 @@ public class Tree<T> {
         return children;
     }
 
-    public void dfs(int level) {
+    public  StringBuilder dfs(int level) {
         StringBuilder indent = new StringBuilder();
         for (int i = 0; i < level; i++) {
-            indent.append("  "); // Anzahl der Leerzeichen für Einrückung anpassen
+            indent.append(" "); // getting the indentation
         }
-        System.out.println(indent + this.value);
         for (Tree<T> child : children) {
             child.dfs(level + 1);
+
         }
+        
+        
+        return indent;
     }
 
     public static void main(String[] args) {
@@ -55,7 +58,11 @@ public class Tree<T> {
         bike.children().add(tandem);
         bike.children().add(ebike);
 
-        wheeled_vehicle.dfs(0);
+        
+
+        wheeled_vehicle.dfs(2);
+       // System.out.println(indent.toString() + wheeled_vehicle.value);//why can´t I use indent?
+    
     }
 
 }
