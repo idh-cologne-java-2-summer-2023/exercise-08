@@ -96,13 +96,11 @@ public class Hanoi {
 	}
 
 	private void runAutomatically() {
-		// we print out the initial situation
+		
 		System.out.println(this);
 
-		// this is the entry point into the recursion
 		movePieces(left.size(), 'l', 'r', 'm');
 		
-		// and in the end, we check that everything has been moved
 		System.out.println(this);
 	}
 	
