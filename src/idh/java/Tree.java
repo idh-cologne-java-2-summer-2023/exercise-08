@@ -32,12 +32,19 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
-		System.out.println(this.value);
-		for (Tree<T> child : children) {
-			child.dfs();
-		}
+	public void dfs(int depth) {
+	    StringBuilder indentation = new StringBuilder();
+	    for (int i = 0; i < depth; i++) {
+	        indentation.append("  "); // Fügen Sie Leerzeichen für jede Stufe der Einrückung hinzu
+	    }
+	    System.out.println(indentation.toString() + this.value);
+
+	    for (Tree<T> child : children) {
+	        child.dfs(depth + 1); // Erhöhen Sie die Tiefe für die rekursive Aufrufe
+	    }
 	}
+
+
 	
 	
 	public static void main(String[] args) {
@@ -53,7 +60,7 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
 	}
 
 }
