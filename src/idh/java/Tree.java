@@ -31,29 +31,36 @@ public class Tree<T>  {
 		return children;
 	}
 	
+
 	
-	public void dfs() {
+	public void dfs(int gap) {
+		for (int i=0; i<=gap;i++) {
+				System.out.print(" ");
+			
+		}
+	
 		System.out.println(this.value);
 		for (Tree<T> child : children) {
-			child.dfs();
+			child.dfs(gap+1);
 		}
 	}
 	
 	
+	
 	public static void main(String[] args) {
-		
 		Tree<String> ebike = new Tree<String>("e-bike");
 		Tree<String> tandem = new Tree<String>("tandem");
 		Tree<String> bike = new Tree<String>("bike");
 		Tree<String> buggy = new Tree<String>("buggy");
 		Tree<String> wheeled_vehicle = new Tree<String>("wheeled vehicle");
-
+		
+	
 		wheeled_vehicle.children().add(bike);
-		wheeled_vehicle.children().add(buggy);
 		bike.children().add(tandem);
 		bike.children().add(ebike);
+		wheeled_vehicle.children().add(buggy);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
 	}
 
 }
