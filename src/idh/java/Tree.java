@@ -1,6 +1,6 @@
 package idh.java;
 
-import java.util.Collection;
+import java.util.Collection; 
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,10 +32,14 @@ public class Tree<T>  {
 	}
 	
 	
-	public void dfs() {
-		System.out.println(this.value);
+	public void dfs(int depth) {
+		StringBuilder indent = new StringBuilder();
+        for (int i = 0; i < depth; i++) {
+            indent.append("  "); // Füge zwei Leerzeichen pro Ebene hinzu
+        }
+		System.out.println(indent.toString() + value.toString());
 		for (Tree<T> child : children) {
-			child.dfs();
+			child.dfs(depth + 1);
 		}
 	}
 	
@@ -53,7 +57,7 @@ public class Tree<T>  {
 		bike.children().add(tandem);
 		bike.children().add(ebike);
 		
-		wheeled_vehicle.dfs();
+		wheeled_vehicle.dfs(0);
 	}
 
 }
